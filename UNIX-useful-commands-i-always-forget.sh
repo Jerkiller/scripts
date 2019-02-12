@@ -1,3 +1,5 @@
+# Edit my custom aliases
+sudo nano ~/.bashrc
 
 # Push local file to server 
 scp file.txt user@0.0.0.0:file.txt
