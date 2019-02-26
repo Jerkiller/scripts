@@ -29,3 +29,38 @@ foreach($Resource in Get-AzureRmResource)
     # Output to file
     """$Name"";""$GroupName"";""$Type"";""$Product"";""$Function""" | Out-File -FilePath $OutputFile -Append
 }
+
+##########################################
+# Other Useful commands about Azure Tags #
+##########################################
+
+# Get all tagged resources
+# Get-AzureRmTag
+
+# Drill down into the "Product" tag
+# Get-AzureRmTag -Name "Product"
+
+# All the resources with a specific tag
+# Get-AzureRmResource -Tag @{Function="CEP"} | ft -Property Name
+
+# Export a command into CSV
+# <Command> | Export-Csv "c:\path\a.csv"
+
+# All the resources without any tag
+# foreach($resource in Get-AzureRmResource)
+# {
+#     if (($resource.Tags -eq $null) -or ($resource.TagName -ne "Product"))
+#     { echo $resource.Name, $resource.ResourceType }
+# }
+
+# Remove every tag of a certain type
+# foreach($r in Get-AzureRmResource)
+# {
+# 	$resourcetags=(Get-AzureRmResource -ResourceId $r.ResourceId).Tags
+#	
+# 	if(($resourcetags) -AND ($resourcetags.ContainsKey("Product"))) {
+# 	 	$resourcetags.Remove("Product") 
+# 	 	Set-AzureRmResource -Tag $resourcetags -ResourceId $r.ResourceId -Force
+# 	 }
+#     echo ---------------------------
+# }
